@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Zhangxuan Gu</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://zhangxgu.github.io/"/>
+  <updated>2020-04-03T11:07:54.121Z</updated>
+  <id>https://zhangxgu.github.io/</id>
+  
+  <author>
+    <name>Zhangxuan Gu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Introduction of Myself</title>
+    <link href="https://zhangxgu.github.io/2020/04/03/intro/"/>
+    <id>https://zhangxgu.github.io/2020/04/03/intro/</id>
+    <published>2020-04-03T11:01:23.000Z</published>
+    <updated>2020-04-03T11:07:54.121Z</updated>
+    
+    <content type="html"><![CDATA[<p>Zhangxuan Gu is currently a Ph.D student at Department of Computer Science and Technology in Shanghai Jiao Tong University in China. His research advisors are Prof. Liqing Zhang and Prof. Li Niu. His research interests include computer vision, semantic segmentation and machine learning, especially, transfer learning in semantic segmentation.</p><h2 id="Education"><a href="#Education" class="headerlink" title="Education"></a>Education</h2><ul><li><b>PhD in Computer Science</b><br>Shanghai Jiao Tong University<br>2016 - Now</li><li><b>BSc in Mathematics</b><br>Shanghai Jiao Tong University<br>2012 - 2016</li></ul><h2 id="Publications"><a href="#Publications" class="headerlink" title="Publications"></a>Publications</h2><h3 id="2019"><a href="#2019" class="headerlink" title="2019"></a>2019</h3><ul><li><b>Gu, Zhangxuan &amp; Zhang, Jianfu &amp; Pan, Ziqi &amp; Zhao, Haohua &amp; Zhang, Liqing. (2019). Clothes Keypoints Localization and Attribute Recognition via Prior Knowledge. 550-555. 10.1109/ICME.2019.00101. </b></li></ul><h2 id="Submitted"><a href="#Submitted" class="headerlink" title="Submitted"></a>Submitted</h2><ul><li><b> Hard Pixel Mining for Depth Privileged Semantic Segmentation. [TMM]</b></li><li><b> Context-aware Feature Generation For Zero-shot Semantic Segmentation. [IJCAI2020]</b></li></ul><h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><ul><li><b>Email</b><br><a href="mailto:zhangxgu@126.com" target="_blank" rel="noopener">zhangxgu@126.com</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Zhangxuan Gu is currently a Ph.D student at Department of Computer Science and Technology in Shanghai Jiao Tong University in China. His 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
