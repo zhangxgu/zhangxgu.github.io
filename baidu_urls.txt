@@ -1,1 +1,2 @@
+https://zhangxgu.github.io/2020/09/04/zero-shot-semantic-segmentation/
 https://zhangxgu.github.io/2020/04/03/intro/
