@@ -1,0 +1,83 @@
+# papers.yml example
+- title: "UI-Venus Technical Report: Building High-performance UI Agents with RFT"
+  authors: "Zhangxuan Gu*, Zhengwen Zeng*, Zhenyu Xu*, Xingran Zhou*, Shuheng Shen*^, Yunfei Liu*, Beitong Zhou*, Changhua Meng, Tianyu Xia, Weizhi Chen, Yue Wen, Jingya Dou, Fei Tang, Jinzhen Lin, Yulin Liu, Zhenlin Guo, Yichen Gong, Heng Jia, Changlong Gao, Yuan Guo, Yong Deng, Zhenyu Guo, Liang Chen, Weiqiang Wang"
+  year: 2025
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/abs/2508.10833"
+  code: "https://github.com/inclusionAI/UI-Venus"
+  #abstract: "We present UI-Venus, a native UI agent that takes only screenshots as input based on a multimodal large language model. UI-Venus achieves SOTA performance on both UI grounding and navigation tasks using only several hundred thousand high-quality training samples through reinforcement finetune (RFT) based on Qwen2.5-VL. Specifically, the 7B and 72B variants of UI-Venus obtain 94.1% / 50.8% and 95.3% / 61.9% on the standard grounding benchmarks, i.e., Screenspot-V2 / Pro, surpassing the previous SOTA baselines including open-source GTA1 and closed-source UI-TARS-1.5. To show UI-Venus's summary and planing ability, we also evaluate it on the AndroidWorld, an online UI navigation arena, on which our 7B and 72B variants achieve 49.1% and 65.9% success rate, also beating existing models. To achieve this, we introduce carefully designed reward functions for both UI grounding and navigation tasks and corresponding efficient data cleaning strategies. To further boost navigation performance, we propose Self-Evolving Trajectory History Alignment & Sparse Action Enhancement that refine historical reasoning traces and balances the distribution of sparse but critical actions, leading to more coherent planning and better generalization in complex UI tasks. Our contributions include the publish of SOTA open-source UI agents, comprehensive data cleaning protocols and a novel self-evolving framework for improving navigation performance, which encourage further research and development in the community. "
+
+- title: "Mobile User Interface Element Detection Via Adaptively Prompt Tuning"
+  authors: "Zhangxuan Gu, Zhuoer Xu, Haoxing Chen, Jun Lan, Changhua Meng, Weiqiang Wang"
+  year: 2023
+  venue: "CVPR"
+  pdf: "https://arxiv.org/abs/2305.09699"
+  #abstract: "Recent object detection approaches rely on pretrained vision-language models for image-text alignment. However, they fail to detect the Mobile User Interface (MUI) element since it contains additional OCR information, which describes its content and function but is often ignored. In this paper, we develop a new MUI element detection dataset named MUI-zh and propose an Adaptively Prompt Tuning (APT) module to take advantage of discriminating OCR information. APT is a lightweight and effective module to jointly optimize category prompts across different modalities. For every element, APT uniformly encodes its visual features and OCR descriptions to dynamically adjust the representation of frozen category prompts. We evaluate the effectiveness of our plug-and-play APT upon several existing CLIP-based detectors for both standard and open-vocabulary MUI element detection. Extensive experiments show that our method achieves considerable improvements on two datasets."
+
+- title: "DiffusionInst: Diffusion Model for Instance Segmentation"
+  authors: "Zhangxuan Gu, Haoxing Chen, Zhuoer Xu, Jun Lan, Changhua Meng, Weiqiang Wang"
+  year: 2024
+  venue: "Icassp(oral)"
+  pdf: "https://arxiv.org/abs/2305.09699"
+  code: "https://github.com/chenhaoxing/DiffusionInst"
+  #abstract: "Diffusion frameworks have achieved comparable performance with previous state-of-the-art image generation models. Researchers are curious about its variants in discriminative tasks because of its powerful noise-to-image denoising pipeline. This paper proposes DiffusionInst, a novel framework that represents instances as instance-aware filters and formulates instance segmentation as a noise-to-filter denoising process. The model is trained to reverse the noisy groundtruth without any inductive bias from RPN. During inference, it takes a randomly generated filter as input and outputs mask in one-step or multi-step denoising. Extensive experimental results on COCO and LVIS show that DiffusionInst achieves competitive performance compared to existing instance segmentation models with various backbones, such as ResNet and Swin Transformers. We hope our work could serve as a strong baseline, which could inspire designing more efficient diffusion frameworks for challenging discriminative tasks."
+
+
+
+- title: "Context-aware Feature Generation for Zero-shot Semantic Segmentation"
+  authors: "Zhangxuan Gu, Siyuan Zhou, Li Niu, Zihan Zhao, Liqing Zhang"
+  year: 2022
+  venue: "ACMMM"
+  pdf: "https://arxiv.org/abs/2008.06893"
+  code: "https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation"
+  #abstract: "Existing semantic segmentation models heavily rely on dense pixel-wise annotations. To reduce the annotation pressure, we focus on a challenging task named zero-shot semantic segmentation, which aims to segment unseen objects with zero annotations. This task can be accomplished by transferring knowledge across categories via semantic word embeddings. In this paper, we propose a novel context-aware feature generation method for zero-shot segmentation named CaGNet. In particular, with the observation that a pixel-wise feature highly depends on its contextual information, we insert a contextual module in a segmentation network to capture the pixel-wise contextual information, which guides the process of generating more diverse and context-aware features from semantic word embeddings. Our method achieves state-of-the-art results on three benchmark datasets for zero-shot segmentation"
+
+
+- title: "Hard Pixel Mining for Depth Privileged Semantic Segmentation"
+  authors: "Zhangxuan Gu, Li Niu, Haohua Zhao, Liqing Zhang"
+  year: 2020
+  venue: "TMM"
+  pdf: "https://arxiv.org/abs/1906.11437"
+  #abstract: "Semantic segmentation has achieved remarkable progress but remains challenging due to the complex scene, object occlusion, and so on. Some research works have attempted to use extra information such as a depth map to help RGB based semantic segmentation because the depth map could provide complementary geometric cues. However, due to the inaccessibility of depth sensors, depth information is usually unavailable for the test images. In this paper, we leverage only the depth of training images as the privileged information to mine the hard pixels in semantic segmentation, in which depth information is only available for training images but not available for test images. Specifically, we propose a novel Loss Weight Module, which outputs a loss weight map by employing two depth-related measurements of hard pixels: Depth Prediction Error and Depthaware Segmentation Error. The loss weight map is then applied to segmentation loss, with the goal of learning a more robust model by paying more attention to the hard pixels. Besides, we also explore a curriculum learning strategy based on the loss weight map. Meanwhile, to fully mine the hard pixels on different scales, we apply our loss weight module to multi-scale side outputs. Our hard pixels mining method achieves the state-of-the-art results on two benchmark datasets, and even outperforms the methods which need depth input during testing."
+
+
+- title: "XYLayoutLM: Towards Layout-Aware Multimodal Networks For Visually-Rich Document Understanding"
+  authors: "Zhangxuan Gu, Changhua Meng, Ke Wang, Jun Lan, Weiqiang Wang, Ming Gu, Liqing Zhang"
+  year: 2022
+  venue: "CVPR"
+  pdf: "https://arxiv.org/abs/2203.06947"
+  #abstract: "Recently, various multimodal networks for Visually-Rich Document Understanding(VRDU) have been proposed, showing the promotion of transformers by integrating visual and layout information with the text embeddings. However, most existing approaches utilize the position embeddings to incorporate the sequence information, neglecting the noisy improper reading order obtained by OCR tools. In this paper, we propose a robust layout-aware multimodal network named XYLayoutLM to capture and leverage rich layout information from proper reading orders produced by our Augmented XY Cut. Moreover, a Dilated Conditional Position Encoding module is proposed to deal with the input sequence of variable lengths, and it additionally extracts local layout information from both textual and visual modalities while generating position embeddings. Experiment results show that our XYLayoutLM achieves competitive results on document understanding tasks."
+
+
+- title: "From Pixel to Patch: Synthesize Context-aware Features for Zero-shot Semantic Segmentation"
+  authors: "Zhangxuan Gu, Siyuan Zhou, Li Niu, Zihan Zhao, Liqing Zhang"
+  year: 2022
+  venue: "TNNLS"
+  pdf: "https://arxiv.org/abs/2009.12232"
+  code: "https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation"
+  #abstract: "Zero-shot learning has been actively studied for image classification task to relieve the burden of annotating image labels. Interestingly, semantic segmentation task requires more labor-intensive pixel-wise annotation, but zero-shot semantic segmentation has only attracted limited research interest. Thus, we focus on zero-shot semantic segmentation, which aims to segment unseen objects with only category-level semantic representations provided for unseen categories. In this paper, we propose a novel Context-aware feature Generation Network (CaGNet), which can synthesize context-aware pixel-wise visual features for unseen categories based on category-level semantic representations and pixel-wise contextual information. The synthesized features are used to finetune the classifier to enable segmenting unseen objects. Furthermore, we extend pixel-wise feature generation and finetuning to patch-wise feature generation and finetuning, which additionally considers inter-pixel relationship. Experimental results on Pascal-VOC, Pascal-Context, and COCO-stuff show that our method significantly outperforms the existing zero-shot semantic segmentation methods."
+
+- title: "DiffUTE: Universal Text Editing Diffusion Model"
+  authors: "Haoxing Chen, Zhuoer Xu, Zhangxuan Gu^, Jun Lan, Xing Zheng, Yaohui Li, Changhua Meng, Huijia Zhu, Weiqiang Wang"
+  year: 2023
+  venue: "NIPS"
+  pdf: "https://arxiv.org/abs/2305.10825"
+  code: "https://github.com/chenhaoxing/DiffUTE"
+  #abstract: "Diffusion model based language-guided image editing has achieved great success recently. However, existing state-of-the-art diffusion models struggle with rendering correct text and text style during generation. To tackle this problem, we propose a universal self-supervised text editing diffusion model (DiffUTE), which aims to replace or modify words in the source image with another one while maintaining its realistic appearance. Specifically, we build our model on a diffusion model and carefully modify the network structure to enable the model for drawing multilingual characters with the help of glyph and position information. Moreover, we design a self-supervised learning framework to leverage large amounts of web data to improve the representation ability of the model. Experimental results show that our method achieves an impressive performance and enables controllable editing on in-the-wild images with high fidelity."
+
+- title: "Hierarchical Dynamic Image Harmonization"
+  authors: "Haoxing Chen, Zhangxuan Gu, Yaohui Li, Jun Lan, Changhua Meng, Weiqiang Wang, Huaxiong Li"
+  year: 2023
+  venue: "ACMMM(oral)"
+  pdf: "https://arxiv.org/abs/2211.08639"
+  code: "https://github.com/chenhaoxing/HDNet"
+  #abstract: "Image harmonization is a critical task in computer vision, which aims to adjust the foreground to make it compatible with the background. Recent works mainly focus on using global transformations (i.e., normalization and color curve rendering) to achieve visual consistency. However, these models ignore local visual consistency and their huge model sizes limit their harmonization ability on edge devices. In this paper, we propose a hierarchical dynamic network (HDNet) to adapt features from local to global view for better feature transformation in efficient image harmonization. Inspired by the success of various dynamic models, local dynamic (LD) module and mask-aware global dynamic (MGD) module are proposed in this paper. Specifically, LD matches local representations between the foreground and background regions based on semantic similarities, then adaptively adjust every foreground local representation according to the appearance of its -nearest neighbor background regions. In this way, LD can produce more realistic images at a more fine-grained level, and simultaneously enjoy the characteristic of semantic alignment. The MGD effectively applies distinct convolution to the foreground and background, learning the representations of foreground and background regions as well as their correlations to the global harmonization, facilitating local visual consistency for the images much more efficiently. Experimental results demonstrate that the proposed HDNet significantly reduces the total model parameters by more than 80% compared to previous methods, while still attaining state-of-the-art performance on the popular iHarmony4 dataset. Notably, the HDNet achieves a 4% improvement in PSNR and a 19% reduction in MSE compared to the prior state-of-the-art methods."
+
+
+- title: "DeMamba: AI-Generated Video Detection on Million-Scale GenVideo Benchmark"
+  authors: "Haoxing Chen, Yan Hong, Zizheng Huang, Zhuoer Xu, Zhangxuan Gu^, Yaohui Li, Jun Lan, Huijia Zhu, Jianfu Zhang, Weiqiang Wang, Huaxiong Li"
+  year: 2024
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/abs/2405.19707"
+  code: "https://github.com/chenhaoxing/DeMamba"
+  #abstract: "Recently, video generation techniques have advanced rapidly. Given the popularity of video content on social media platforms, these models intensify concerns about the spread of fake information. Therefore, there is a growing demand for detectors capable of distinguishing between fake AI-generated videos and mitigating the potential harm caused by fake information. However, the lack of large-scale datasets from the most advanced video generators poses a barrier to the development of such detectors. To address this gap, we introduce the first AI-generated video detection dataset, GenVideo. It features the following characteristics: (1) a large volume of videos, including over one million AI-generated and real videos collected; (2) a rich diversity of generated content and methodologies, covering a broad spectrum of video categories and generation techniques. We conducted extensive studies of the dataset and proposed two evaluation methods tailored for real-world-like scenarios to assess the detectors' performance: the cross-generator video classification task assesses the generalizability of trained detectors on generators; the degraded video classification task evaluates the robustness of detectors to handle videos that have degraded in quality during dissemination. Moreover, we introduced a plug-and-play module, named Detail Mamba (DeMamba), designed to enhance the detectors by identifying AI-generated videos through the analysis of inconsistencies in temporal and spatial dimensions. Our extensive experiments demonstrate DeMamba's superior generalizability and robustness on GenVideo compared to existing detectors. We believe that the GenVideo dataset and the DeMamba module will significantly advance the field of AI-generated video detection."
