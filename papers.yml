@@ -1,4 +1,11 @@
 # papers.yml example
+- title: "GUI-G2: Gaussian Reward Modeling for GUI Grounding"
+  authors: "Fei Tang, Zhangxuan Gu, Zhengxi Lu, Xuyang Liu, Shuheng Shen, Changhua Meng, Wen Wang, Wenqi Zhang, Yongliang Shen, Weiming Lu, Jun Xiao, Yueting Zhuang"
+  year: 2025
+  venue: "AAAI"
+  pdf: "https://arxiv.org/html/2507.15846v1"
+  code: "https://github.com/zju-real/GUI-G2"
+
 - title: "UI-Venus Technical Report: Building High-performance UI Agents with RFT"
   authors: "Zhangxuan Gu*, Zhengwen Zeng*, Zhenyu Xu*, Xingran Zhou*, Shuheng Shen*^, Yunfei Liu*, Beitong Zhou*, Changhua Meng, Tianyu Xia, Weizhi Chen, Yue Wen, Jingya Dou, Fei Tang, Jinzhen Lin, Yulin Liu, Zhenlin Guo, Yichen Gong, Heng Jia, Changlong Gao, Yuan Guo, Yong Deng, Zhenyu Guo, Liang Chen, Weiqiang Wang"
   year: 2025
