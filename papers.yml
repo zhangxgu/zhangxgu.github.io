@@ -1,6 +1,13 @@
 # papers.yml example
-- title: "GUI-G2: Gaussian Reward Modeling for GUI Grounding"
+- title: "VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks"
   authors: "Fei Tang, Zhangxuan Gu, Zhengxi Lu, Xuyang Liu, Shuheng Shen, Changhua Meng, Wen Wang, Wenqi Zhang, Yongliang Shen, Weiming Lu, Jun Xiao, Yueting Zhuang"
+  year: 2025
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/abs/2512.16501"
+  code: "https://ui-venus.github.io/VenusBench-GD/"
+
+- title: "GUI-G2: Gaussian Reward Modeling for GUI Grounding"
+  authors: "Beitong Zhou*, Zhexiao Huang*, Yuan Guo*, Zhangxuan Gu*, Tianyu Xia, Zichen Luo, Fei Tang, Dehan Kong, Yanyi Shang, Suling Ou, Zhenlin Guo, Changhua Meng, Shuheng Shen"
   year: 2025
   venue: "AAAI"
   pdf: "https://arxiv.org/html/2507.15846v1"
