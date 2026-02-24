@@ -1,4 +1,11 @@
 # papers.yml example
+- title: "UI-Venus-1.5 Technical Report"
+  authors: "Venus-Team: Changlong Gao*, Zhangxuan Gu*, Yulin Liu*, Xinyu Qiu*, Shuheng Shen*, Yue Wen*, Tianyu Xia*, Zhenyu Xu*, Zhengwen Zeng*, Beitong Zhou*, Xingran Zhou*, Weizhi Chen, Sunhao Dai, Jingya Dou, Yichen Gong, Yuan Guo, Zhenlin Guo, Feng Li, Qian Li, Jinzhen Lin, Yuqi Zhou, Linchao Zhu, Liang Chen, Zhenyu Guo, Changhua Meng, Weiqiang Wang"
+  year: 2026
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/abs/2602.09082"
+  code: "https://github.com/inclusionAI/UI-Venus"
+
 - title: "VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks"
   authors: "Beitong Zhou*, Zhexiao Huang*, Yuan Guo*, Zhangxuan Gu*, Tianyu Xia, Zichen Luo, Fei Tang, Dehan Kong, Yanyi Shang, Suling Ou, Zhenlin Guo, Changhua Meng, Shuheng Shen"
   year: 2025
