@@ -1,50 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zhangxuan Gu - Academic Homepage</title>
-  
+
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary-color: #1e3a4c;
-      --secondary-color: #2d8fd0;
-      --text-muted: #5c6b7a;
-      --surface: #ffffff;
-      --surface-soft: #f4f8fc;
-      --border-subtle: rgba(30, 58, 76, 0.08);
-      --radius-lg: 14px;
-      --radius-md: 10px;
-      --shadow-card: 0 4px 24px rgba(30, 58, 76, 0.07);
+    /* ===== Dark Theme (default) ===== */
+    :root,
+    [data-theme="dark"] {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #0f1520;
+      --surface: rgba(15, 23, 42, 0.75);
+      --surface-hover: rgba(20, 30, 55, 0.85);
+      --surface-soft: rgba(15, 23, 42, 0.5);
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #06b6d4;
+      --accent-purple: #a855f7;
+      --accent-blue: #3b82f6;
+      --border-subtle: rgba(99, 179, 237, 0.12);
+      --border-glow: rgba(6, 182, 212, 0.3);
+      --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.3);
+      --glow-purple: 0 0 20px rgba(168, 85, 247, 0.3);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --glass-blur: blur(12px);
+      --particle-color: rgba(6, 182, 212, 0.5);
+      --particle-line: rgba(6, 182, 212, 0.15);
+    }
+
+    /* ===== Light Theme ===== */
+    [data-theme="light"] {
+      --bg-primary: #f0f4f8;
+      --bg-secondary: #e8eef5;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-hover: rgba(255, 255, 255, 0.95);
+      --surface-soft: rgba(244, 248, 252, 0.8);
+      --text-primary: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent-cyan: #0891b2;
+      --accent-purple: #7c3aed;
+      --accent-blue: #2563eb;
+      --border-subtle: rgba(30, 58, 76, 0.1);
+      --border-glow: rgba(8, 145, 178, 0.25);
+      --glow-cyan: 0 0 15px rgba(8, 145, 178, 0.15);
+      --glow-purple: 0 0 15px rgba(124, 58, 237, 0.15);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow-card: 0 4px 24px rgba(30, 58, 76, 0.08);
+      --glass-blur: blur(8px);
+      --particle-color: rgba(8, 145, 178, 0.4);
+      --particle-line: rgba(8, 145, 178, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      color: #2a3441;
+      color: var(--text-primary);
       line-height: 1.65;
-      background: linear-gradient(165deg, #e8eef5 0%, #f4f6f9 42%, #eef1f5 100%);
-      padding: 2.5rem 1rem 2rem;
+      background: var(--bg-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* Particle canvas */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Content wrapper */
+    .page-wrapper {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 2.5rem 1rem 2rem;
       min-height: 100vh;
     }
 
-    .container-main {
-      max-width: 820px;
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 1.25rem;
+      right: 1.25rem;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-glow);
       background: var(--surface);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--accent-cyan);
+      transition: all 0.3s ease;
+      box-shadow: var(--glow-cyan);
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1) rotate(15deg);
+      box-shadow: var(--glow-cyan), var(--glow-purple);
+    }
+
+    /* Main container — glass card */
+    .container-main {
+      max-width: 1080px;
+      background: var(--surface);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-card);
       border: 1px solid var(--border-subtle);
       padding: 2.75rem 2.25rem;
       margin-bottom: 2rem;
       width: 100%;
+      transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
     }
 
     @media (min-width: 576px) {
@@ -53,6 +150,24 @@
       }
     }
 
+    /* Two-column grid */
+    .two-col-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .two-col-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .two-col-row .section {
+      margin-bottom: 0;
+    }
+
+    /* Header */
     .header {
       text-align: center;
       margin-bottom: 2.25rem;
@@ -62,17 +177,28 @@
 
     .name {
       font-weight: 700;
-      font-size: clamp(1.75rem, 4vw, 2.15rem);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
       letter-spacing: -0.02em;
-      color: var(--primary-color);
       margin-bottom: 0.35rem;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-blue));
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
     }
 
     .title {
-      color: var(--secondary-color);
+      color: var(--accent-cyan);
       font-size: 1.125rem;
       font-weight: 600;
       margin-bottom: 0.35rem;
+      text-shadow: var(--glow-cyan);
     }
 
     .affiliation {
@@ -80,8 +206,9 @@
       font-size: 0.98rem;
     }
 
+    /* Sections */
     .section {
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.75rem;
       text-align: center;
     }
 
@@ -100,24 +227,34 @@
       font-size: 1.05rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--primary-color);
+      color: var(--accent-cyan);
       margin-bottom: 1.25rem;
       padding-bottom: 0.65rem;
-      border-bottom: 2px solid var(--secondary-color);
+      border-bottom: 2px solid var(--accent-cyan);
       text-align: center;
+      text-shadow: var(--glow-cyan);
     }
 
+    /* Bio */
     .bio {
-      background: linear-gradient(135deg, var(--surface-soft) 0%, #eef5fb 100%);
+      background: var(--surface-soft);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       padding: 1.5rem 1.35rem;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
       text-align: left;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .bio:hover {
+      border-color: var(--border-glow);
+      box-shadow: var(--glow-cyan);
     }
 
     .bio p {
       margin-bottom: 0;
-      color: #374955;
+      color: var(--text-secondary);
     }
 
     .bio p + .research-interests {
@@ -126,17 +263,18 @@
 
     .research-interests {
       padding-top: 1rem;
-      border-top: 1px dashed rgba(45, 143, 208, 0.25);
+      border-top: 1px dashed rgba(6, 182, 212, 0.25);
       font-size: 0.95rem;
-      color: #374955;
+      color: var(--text-secondary);
       line-height: 1.6;
     }
 
     .research-interests strong {
-      color: var(--primary-color);
+      color: var(--accent-cyan);
       font-weight: 600;
     }
 
+    /* CV List */
     .cv-list {
       display: flex;
       flex-direction: column;
@@ -149,12 +287,13 @@
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       padding: 1rem 1.15rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.3s ease;
     }
 
     .cv-entry:hover {
-      border-color: rgba(45, 143, 208, 0.35);
-      box-shadow: 0 6px 20px rgba(30, 58, 76, 0.06);
+      border-color: var(--border-glow);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
     }
 
     .cv-entry-head {
@@ -169,14 +308,14 @@
     .cv-entry-title {
       font-weight: 600;
       font-size: 1rem;
-      color: var(--primary-color);
+      color: var(--text-primary);
       margin: 0;
     }
 
     .cv-entry-period {
       font-size: 0.82rem;
       font-weight: 600;
-      color: var(--secondary-color);
+      color: var(--accent-cyan);
       white-space: nowrap;
     }
 
@@ -188,39 +327,58 @@
 
     .cv-entry-detail {
       font-size: 0.88rem;
-      color: #6b7c89;
+      color: var(--text-muted);
       margin: 0.45rem 0 0;
     }
 
+    /* Year badge */
     .year-header {
-      background: linear-gradient(135deg, var(--primary-color) 0%, #2a5a72 100%);
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
       color: white;
-      padding: 0.45rem 1rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
       display: inline-block;
-      margin: 1.35rem 0 1rem;
-      font-size: 0.95rem;
+      margin: 1.25rem 0 0.75rem;
+      font-size: 0.9rem;
       font-weight: 600;
       letter-spacing: 0.03em;
+      box-shadow: var(--glow-cyan);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
 
     .section-content > .year-header:first-of-type {
       margin-top: 0;
     }
-    
-    .paper-item {
-      margin-bottom: 1.35rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-      text-align: center;
+
+    /* Papers grid */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem 1.5rem;
     }
 
-    .paper-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    @media (max-width: 768px) {
+      .papers-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    
+
+    .paper-item {
+      margin-bottom: 0;
+      padding: 1rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: all 0.3s ease;
+      background: var(--surface-soft);
+    }
+
+    .paper-item:hover {
+      border-color: var(--border-glow);
+      box-shadow: var(--glow-purple);
+      transform: translateY(-2px);
+    }
+
     .paper-title-row {
       display: flex;
       flex-wrap: wrap;
@@ -234,6 +392,7 @@
       font-weight: 500;
       margin-bottom: 0;
       text-align: center;
+      color: var(--text-primary);
     }
 
     .paper-badge {
@@ -241,27 +400,32 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       color: #fff;
-      background: var(--secondary-color);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
       padding: 3px 9px;
       border-radius: 999px;
       line-height: 1;
       white-space: nowrap;
+      box-shadow: var(--glow-cyan);
     }
-    
+
     .paper-authors {
-      color: #555;
+      color: var(--text-muted);
       font-size: 0.95rem;
       margin-bottom: 5px;
       text-align: center;
     }
-    
+
+    .paper-authors strong {
+      color: var(--accent-cyan);
+    }
+
     .paper-venue {
       font-style: italic;
-      color: var(--secondary-color);
+      color: var(--accent-purple);
       margin-bottom: 8px;
       text-align: center;
     }
-    
+
     .paper-links {
       display: flex;
       justify-content: center;
@@ -269,1221 +433,532 @@
       gap: 10px;
       margin-top: 10px;
     }
-    
+
     .paper-links a {
       display: inline-block;
       padding: 0.4rem 0.95rem;
-      background-color: var(--surface-soft);
+      background: var(--surface);
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
       font-size: 0.875rem;
-      color: var(--primary-color);
+      color: var(--accent-cyan);
       text-decoration: none;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      transition: all 0.3s ease;
     }
 
     .paper-links a:hover {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      border-color: transparent;
       color: white;
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-1px);
     }
-    
+
     .paper-links a i {
       margin-right: 5px;
     }
-    
-    .footer {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.875rem;
-      padding: 1.25rem 0 0.5rem;
-      width: 100%;
-      max-width: 820px;
-      border-top: 1px solid transparent;
-    }
-    
+
+    /* Contact info */
     .contact-info {
       text-align: center;
       margin-top: 0.85rem;
     }
 
     .contact-info a {
-      color: var(--secondary-color);
+      color: var(--accent-cyan);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
+      transition: all 0.3s ease;
     }
 
     .contact-info a:hover {
+      text-shadow: var(--glow-cyan);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
+    .contact-info .separator {
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      padding: 1.25rem 0 0.5rem;
+      width: 100%;
+      max-width: 1080px;
+    }
+
+    /* ===== Scroll animations ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays */
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* Ambient glow behind the main card */
+    .container-main::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: calc(var(--radius-lg) + 2px);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-blue));
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.5s ease;
+    }
+
+    .container-main {
+      position: relative;
+    }
+
+    .container-main:hover::before {
+      opacity: 0.15;
+    }
+
+    /* Scrollbar styling for dark theme */
+    [data-theme="dark"] ::-webkit-scrollbar {
+      width: 8px;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb {
+      background: var(--border-glow);
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container container-main">
-    <!-- Header information -->
-    <div class="header">
-      <h1 class="name">Zhangxuan Gu</h1>
-      <div class="title">Researcher</div>
-      <div class="affiliation">Ant Group</div>
-      <div class="contact-info">
-        <a href="mailto:zhangxgu@126.com"><i class="fas fa-envelope"></i> zhangxgu@126.com</a>
-      </div>
-    </div>
-    
-    <!-- Biography -->
-    <div class="section">
-      <h3 class="section-title">Biography</h3>
-      <div class="section-content">
-        <div class="bio">
-          
-    <p>I work on computer vision, multimodal learning, and GUI agents. I received my Ph.D. from Shanghai Jiao Tong University and am now a researcher at Ant Group.</p>
-    
-          <div class="research-interests">
-            <strong>Research Interests:</strong>
-            Computer Vision, Object Detection, Multimodal Large Language Models, GUI Agent
-          </div>
+  <!-- Particle Background -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <i class="fas fa-moon" id="themeIcon"></i>
+  </button>
+
+  <div class="page-wrapper">
+    <div class="container container-main">
+      <!-- Header information -->
+      <div class="header fade-up">
+        <h1 class="name">Zhangxuan Gu</h1>
+        <div class="title">UI-Venus Team</div>
+        <div class="affiliation">Ant Group</div>
+        <div class="contact-info">
+          <a href="mailto:zhangxgu@126.com"><i class="fas fa-envelope"></i> zhangxgu@126.com</a>
+          <span class="separator">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+          <a href="tel:18818273879"><i class="fas fa-phone"></i> 18818273879</a>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h3 class="section-title">Education</h3>
-      <div class="section-content">
-        <div class="cv-list">
-          
-          <div class="cv-entry">
-            <div class="cv-entry-head">
-              <h4 class="cv-entry-title">Ph.D. in Computer Science</h4>
-              <span class="cv-entry-period">2016 – 2022</span>
+      <!-- Biography -->
+      <div class="section fade-up">
+        <h3 class="section-title">Biography</h3>
+        <div class="section-content">
+          <div class="bio">
+            <p>I work on computer vision, multimodal learning, and GUI agents. I received my Ph.D. from Shanghai Jiao Tong University and am now a researcher at Ant Group.</p>
+            <div class="research-interests">
+              <strong>Research Interests:</strong>
+              Computer Vision, Object Detection, Multimodal Large Language Models, GUI Agent
             </div>
-            <p class="cv-entry-org">Shanghai Jiao Tong University</p>
-            
-            <p class="cv-entry-detail">Advisor: Professor Liqing Zhang</p>
-            
           </div>
-          
-          <div class="cv-entry">
-            <div class="cv-entry-head">
-              <h4 class="cv-entry-title">B.Sc. in Mathematics</h4>
-              <span class="cv-entry-period">2012 – 2016</span>
+        </div>
+      </div>
+
+      <div class="two-col-row fade-up">
+        <div class="section">
+          <h3 class="section-title">Education</h3>
+          <div class="section-content">
+            <div class="cv-list">
+              <div class="cv-entry">
+                <div class="cv-entry-head">
+                  <h4 class="cv-entry-title">Ph.D. in Computer Science</h4>
+                  <span class="cv-entry-period">2016 – 2022</span>
+                </div>
+                <p class="cv-entry-org">Shanghai Jiao Tong University</p>
+                <p class="cv-entry-detail">Advisor: Professor Liqing Zhang</p>
+              </div>
+              <div class="cv-entry">
+                <div class="cv-entry-head">
+                  <h4 class="cv-entry-title">B.Sc. in Mathematics</h4>
+                  <span class="cv-entry-period">2012 – 2016</span>
+                </div>
+                <p class="cv-entry-org">Shanghai Jiao Tong University</p>
+              </div>
             </div>
-            <p class="cv-entry-org">Shanghai Jiao Tong University</p>
-            
           </div>
-          
         </div>
-      </div>
-    </div>
 
-    <div class="section">
-      <h3 class="section-title">Experience</h3>
-      <div class="section-content">
-        <div class="cv-list">
-          
-          <div class="cv-entry">
-            <div class="cv-entry-head">
-              <h4 class="cv-entry-title">Researcher</h4>
-              <span class="cv-entry-period">2022 – present</span>
+        <div class="section">
+          <h3 class="section-title">Experience</h3>
+          <div class="section-content">
+            <div class="cv-list">
+              <div class="cv-entry">
+                <div class="cv-entry-head">
+                  <h4 class="cv-entry-title">Researche of UI-Venus Team</h4>
+                  <span class="cv-entry-period">2022 – present</span>
+                </div>
+                <p class="cv-entry-org">Ant Group</p>
+              </div>
             </div>
-            <p class="cv-entry-org">Ant Group</p>
-            
           </div>
-          
+        </div>
+      </div>
+
+      <!-- Publications -->
+      <div class="section fade-up">
+        <h3 class="section-title">Publications</h3>
+        <div class="section-content">
+
+          <div class="year-header">2026</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">UI-Venus-1.5 Technical Report</span>
+                <span class="paper-badge">Recent</span>
+              </div>
+              <div class="paper-authors">
+                Venus-Team: Changlong Gao*, <strong>Zhangxuan Gu*</strong>, Yulin Liu*, Xinyu Qiu*, Shuheng Shen*, Yue Wen*, Tianyu Xia*, Zhenyu Xu*, Zhengwen Zeng*, Beitong Zhou*, Xingran Zhou*, Weizhi Chen, Sunhao Dai, Jingya Dou, Yichen Gong, Yuan Guo, Zhenlin Guo, Feng Li, Qian Li, Jinzhen Lin, Yuqi Zhou, Linchao Zhu, Liang Chen, Zhenyu Guo, Changhua Meng, Weiqiang Wang
+              </div>
+              <div class="paper-venue">Arxiv, 2026</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2602.09082" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/inclusionAI/UI-Venus" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="year-header">2025</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks</span>
+                <span class="paper-badge">Recent</span>
+              </div>
+              <div class="paper-authors">
+                Beitong Zhou*, Zhexiao Huang*, Yuan Guo*, <strong>Zhangxuan Gu*</strong>, Tianyu Xia, Zichen Luo, Fei Tang, Dehan Kong, Yanyi Shang, Suling Ou, Zhenlin Guo, Changhua Meng, Shuheng Shen
+              </div>
+              <div class="paper-venue">Arxiv, 2025</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2512.16501" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://ui-venus.github.io/VenusBench-GD/" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">GUI-G2: Gaussian Reward Modeling for GUI Grounding</span>
+                <span class="paper-badge">Recent</span>
+              </div>
+              <div class="paper-authors">
+                Fei Tang, <strong>Zhangxuan Gu</strong>, Zhengxi Lu, Xuyang Liu, Shuheng Shen, Changhua Meng, Wen Wang, Wenqi Zhang, Yongliang Shen, Weiming Lu, Jun Xiao, Yueting Zhuang
+              </div>
+              <div class="paper-venue">AAAI, 2025</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/html/2507.15846v1" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/zju-real/GUI-G2" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">UI-Venus Technical Report: Building High-performance UI Agents with RFT</span>
+                <span class="paper-badge">Recent</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu*</strong>, Zhengwen Zeng*, Zhenyu Xu*, Xingran Zhou*, Shuheng Shen*^, Yunfei Liu*, Beitong Zhou*, Changhua Meng, Tianyu Xia, Weizhi Chen, Yue Wen, Jingya Dou, Fei Tang, Jinzhen Lin, Yulin Liu, Zhenlin Guo, Yichen Gong, Heng Jia, Changlong Gao, Yuan Guo, Yong Deng, Zhenyu Guo, Liang Chen, Weiqiang Wang
+              </div>
+              <div class="paper-venue">Arxiv, 2025</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2508.10833" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/inclusionAI/UI-Venus" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="year-header">2024</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">DiffusionInst: Diffusion Model for Instance Segmentation</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Haoxing Chen, Zhuoer Xu, Jun Lan, Changhua Meng, Weiqiang Wang
+              </div>
+              <div class="paper-venue">Icassp(oral), 2024</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2305.09699" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/chenhaoxing/DiffusionInst" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">DeMamba: AI-Generated Video Detection on Million-Scale GenVideo Benchmark</span>
+              </div>
+              <div class="paper-authors">
+                Haoxing Chen, Yan Hong, Zizheng Huang, Zhuoer Xu, <strong>Zhangxuan Gu^</strong>, Yaohui Li, Jun Lan, Huijia Zhu, Jianfu Zhang, Weiqiang Wang, Huaxiong Li
+              </div>
+              <div class="paper-venue">Arxiv, 2024</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2405.19707" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/chenhaoxing/DeMamba" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="year-header">2023</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">Mobile User Interface Element Detection Via Adaptively Prompt Tuning</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Zhuoer Xu, Haoxing Chen, Jun Lan, Changhua Meng, Weiqiang Wang
+              </div>
+              <div class="paper-venue">CVPR, 2023</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2305.09699" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">DiffUTE: Universal Text Editing Diffusion Model</span>
+              </div>
+              <div class="paper-authors">
+                Haoxing Chen, Zhuoer Xu, <strong>Zhangxuan Gu^</strong>, Jun Lan, Xing Zheng, Yaohui Li, Changhua Meng, Huijia Zhu, Weiqiang Wang
+              </div>
+              <div class="paper-venue">NIPS, 2023</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2305.10825" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/chenhaoxing/DiffUTE" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">Hierarchical Dynamic Image Harmonization</span>
+              </div>
+              <div class="paper-authors">
+                Haoxing Chen, <strong>Zhangxuan Gu</strong>, Yaohui Li, Jun Lan, Changhua Meng, Weiqiang Wang, Huaxiong Li
+              </div>
+              <div class="paper-venue">ACMMM(oral), 2023</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2211.08639" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/chenhaoxing/HDNet" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="year-header">2022</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">Context-aware Feature Generation for Zero-shot Semantic Segmentation</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Siyuan Zhou, Li Niu, Zihan Zhao, Liqing Zhang
+              </div>
+              <div class="paper-venue">ACMMM, 2022</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2008.06893" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">XYLayoutLM: Towards Layout-Aware Multimodal Networks For Visually-Rich Document Understanding</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Changhua Meng, Ke Wang, Jun Lan, Weiqiang Wang, Ming Gu, Liqing Zhang
+              </div>
+              <div class="paper-venue">CVPR, 2022</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2203.06947" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+              </div>
+            </div>
+
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">From Pixel to Patch: Synthesize Context-aware Features for Zero-shot Semantic Segmentation</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Siyuan Zhou, Li Niu, Zihan Zhao, Liqing Zhang
+              </div>
+              <div class="paper-venue">TNNLS, 2022</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/2009.12232" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+                <a href="https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation" target="_blank"><i class="fab fa-github"></i> Code</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="year-header">2020</div>
+          <div class="papers-grid">
+            <div class="paper-item">
+              <div class="paper-title-row">
+                <span class="paper-title">Hard Pixel Mining for Depth Privileged Semantic Segmentation</span>
+              </div>
+              <div class="paper-authors">
+                <strong>Zhangxuan Gu</strong>, Li Niu, Haohua Zhao, Liqing Zhang
+              </div>
+              <div class="paper-venue">TMM, 2020</div>
+              <div class="paper-links">
+                <a href="https://arxiv.org/abs/1906.11437" target="_blank"><i class="fas fa-file-pdf"></i> PDF</a>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
-<!-- Publications -->
-<div class="section">
-  <h3 class="section-title">Publications</h3>
-  <div class="section-content">
-    
-      <div class="year-header">2026</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">UI-Venus-1.5 Technical Report</span>
-          
-          <span class="paper-badge" title="Publication year 2026 (recent window)">Recent</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Venus-Team: Changlong Gao*
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu*</strong>
-            
-            , 
-          
-            
-              Yulin Liu*
-            
-            , 
-          
-            
-              Xinyu Qiu*
-            
-            , 
-          
-            
-              Shuheng Shen*
-            
-            , 
-          
-            
-              Yue Wen*
-            
-            , 
-          
-            
-              Tianyu Xia*
-            
-            , 
-          
-            
-              Zhenyu Xu*
-            
-            , 
-          
-            
-              Zhengwen Zeng*
-            
-            , 
-          
-            
-              Beitong Zhou*
-            
-            , 
-          
-            
-              Xingran Zhou*
-            
-            , 
-          
-            
-              Weizhi Chen
-            
-            , 
-          
-            
-              Sunhao Dai
-            
-            , 
-          
-            
-              Jingya Dou
-            
-            , 
-          
-            
-              Yichen Gong
-            
-            , 
-          
-            
-              Yuan Guo
-            
-            , 
-          
-            
-              Zhenlin Guo
-            
-            , 
-          
-            
-              Feng Li
-            
-            , 
-          
-            
-              Qian Li
-            
-            , 
-          
-            
-              Jinzhen Lin
-            
-            , 
-          
-            
-              Yuqi Zhou
-            
-            , 
-          
-            
-              Linchao Zhu
-            
-            , 
-          
-            
-              Liang Chen
-            
-            , 
-          
-            
-              Zhenyu Guo
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            
-          
-        </div>
-        <div class="paper-venue">Arxiv, 2026</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2602.09082" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/inclusionAI/UI-Venus" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      <div class="year-header">2025</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks</span>
-          
-          <span class="paper-badge" title="Publication year 2025 (recent window)">Recent</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Beitong Zhou*
-            
-            , 
-          
-            
-              Zhexiao Huang*
-            
-            , 
-          
-            
-              Yuan Guo*
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu*</strong>
-            
-            , 
-          
-            
-              Tianyu Xia
-            
-            , 
-          
-            
-              Zichen Luo
-            
-            , 
-          
-            
-              Fei Tang
-            
-            , 
-          
-            
-              Dehan Kong
-            
-            , 
-          
-            
-              Yanyi Shang
-            
-            , 
-          
-            
-              Suling Ou
-            
-            , 
-          
-            
-              Zhenlin Guo
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Shuheng Shen
-            
-            
-          
-        </div>
-        <div class="paper-venue">Arxiv, 2025</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2512.16501" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://ui-venus.github.io/VenusBench-GD/" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">GUI-G2: Gaussian Reward Modeling for GUI Grounding</span>
-          
-          <span class="paper-badge" title="Publication year 2025 (recent window)">Recent</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Fei Tang
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Zhengxi Lu
-            
-            , 
-          
-            
-              Xuyang Liu
-            
-            , 
-          
-            
-              Shuheng Shen
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Wen Wang
-            
-            , 
-          
-            
-              Wenqi Zhang
-            
-            , 
-          
-            
-              Yongliang Shen
-            
-            , 
-          
-            
-              Weiming Lu
-            
-            , 
-          
-            
-              Jun Xiao
-            
-            , 
-          
-            
-              Yueting Zhuang
-            
-            
-          
-        </div>
-        <div class="paper-venue">AAAI, 2025</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/html/2507.15846v1" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/zju-real/GUI-G2" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">UI-Venus Technical Report: Building High-performance UI Agents with RFT</span>
-          
-          <span class="paper-badge" title="Publication year 2025 (recent window)">Recent</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu*</strong>
-            
-            , 
-          
-            
-              Zhengwen Zeng*
-            
-            , 
-          
-            
-              Zhenyu Xu*
-            
-            , 
-          
-            
-              Xingran Zhou*
-            
-            , 
-          
-            
-              Shuheng Shen*^
-            
-            , 
-          
-            
-              Yunfei Liu*
-            
-            , 
-          
-            
-              Beitong Zhou*
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Tianyu Xia
-            
-            , 
-          
-            
-              Weizhi Chen
-            
-            , 
-          
-            
-              Yue Wen
-            
-            , 
-          
-            
-              Jingya Dou
-            
-            , 
-          
-            
-              Fei Tang
-            
-            , 
-          
-            
-              Jinzhen Lin
-            
-            , 
-          
-            
-              Yulin Liu
-            
-            , 
-          
-            
-              Zhenlin Guo
-            
-            , 
-          
-            
-              Yichen Gong
-            
-            , 
-          
-            
-              Heng Jia
-            
-            , 
-          
-            
-              Changlong Gao
-            
-            , 
-          
-            
-              Yuan Guo
-            
-            , 
-          
-            
-              Yong Deng
-            
-            , 
-          
-            
-              Zhenyu Guo
-            
-            , 
-          
-            
-              Liang Chen
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            
-          
-        </div>
-        <div class="paper-venue">Arxiv, 2025</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2508.10833" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/inclusionAI/UI-Venus" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      <div class="year-header">2024</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">DiffusionInst: Diffusion Model for Instance Segmentation</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Haoxing Chen
-            
-            , 
-          
-            
-              Zhuoer Xu
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            
-          
-        </div>
-        <div class="paper-venue">Icassp(oral), 2024</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2305.09699" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/chenhaoxing/DiffusionInst" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">DeMamba: AI-Generated Video Detection on Million-Scale GenVideo Benchmark</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Haoxing Chen
-            
-            , 
-          
-            
-              Yan Hong
-            
-            , 
-          
-            
-              Zizheng Huang
-            
-            , 
-          
-            
-              Zhuoer Xu
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu^</strong>
-            
-            , 
-          
-            
-              Yaohui Li
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Huijia Zhu
-            
-            , 
-          
-            
-              Jianfu Zhang
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            , 
-          
-            
-              Huaxiong Li
-            
-            
-          
-        </div>
-        <div class="paper-venue">Arxiv, 2024</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2405.19707" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/chenhaoxing/DeMamba" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      <div class="year-header">2023</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">Mobile User Interface Element Detection Via Adaptively Prompt Tuning</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Zhuoer Xu
-            
-            , 
-          
-            
-              Haoxing Chen
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            
-          
-        </div>
-        <div class="paper-venue">CVPR, 2023</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2305.09699" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">DiffUTE: Universal Text Editing Diffusion Model</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Haoxing Chen
-            
-            , 
-          
-            
-              Zhuoer Xu
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu^</strong>
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Xing Zheng
-            
-            , 
-          
-            
-              Yaohui Li
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Huijia Zhu
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            
-          
-        </div>
-        <div class="paper-venue">NIPS, 2023</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2305.10825" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/chenhaoxing/DiffUTE" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">Hierarchical Dynamic Image Harmonization</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              Haoxing Chen
-            
-            , 
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Yaohui Li
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            , 
-          
-            
-              Huaxiong Li
-            
-            
-          
-        </div>
-        <div class="paper-venue">ACMMM(oral), 2023</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2211.08639" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/chenhaoxing/HDNet" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      <div class="year-header">2022</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">Context-aware Feature Generation for Zero-shot Semantic Segmentation</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Siyuan Zhou
-            
-            , 
-          
-            
-              Li Niu
-            
-            , 
-          
-            
-              Zihan Zhao
-            
-            , 
-          
-            
-              Liqing Zhang
-            
-            
-          
-        </div>
-        <div class="paper-venue">ACMMM, 2022</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2008.06893" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/bcmi/CaGNet-Zero-Shot-Semantic-Segmentation" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">XYLayoutLM: Towards Layout-Aware Multimodal Networks For Visually-Rich Document Understanding</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Changhua Meng
-            
-            , 
-          
-            
-              Ke Wang
-            
-            , 
-          
-            
-              Jun Lan
-            
-            , 
-          
-            
-              Weiqiang Wang
-            
-            , 
-          
-            
-              Ming Gu
-            
-            , 
-          
-            
-              Liqing Zhang
-            
-            
-          
-        </div>
-        <div class="paper-venue">CVPR, 2022</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2203.06947" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          
-          
-        </div>
-      </div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">From Pixel to Patch: Synthesize Context-aware Features for Zero-shot Semantic Segmentation</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Siyuan Zhou
-            
-            , 
-          
-            
-              Li Niu
-            
-            , 
-          
-            
-              Zihan Zhao
-            
-            , 
-          
-            
-              Liqing Zhang
-            
-            
-          
-        </div>
-        <div class="paper-venue">TNNLS, 2022</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/2009.12232" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          <a href="https://github.com/bcmi/CaGNetv2-Zero-Shot-Semantic-Segmentation" target="_blank">
-            <i class="fab fa-github"></i> Code
-          </a>
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      <div class="year-header">2020</div>
-
-      
-        
-      <div class="paper-item">
-        <div class="paper-title-row">
-          <span class="paper-title">Hard Pixel Mining for Depth Privileged Semantic Segmentation</span>
-          
-        </div>
-        <div class="paper-authors">
-          
-          
-            
-              <strong>Zhangxuan Gu</strong>
-            
-            , 
-          
-            
-              Li Niu
-            
-            , 
-          
-            
-              Haohua Zhao
-            
-            , 
-          
-            
-              Liqing Zhang
-            
-            
-          
-        </div>
-        <div class="paper-venue">TMM, 2020</div>
-        
-        <div class="paper-links">
-          
-          <a href="https://arxiv.org/abs/1906.11437" target="_blank">
-            <i class="fas fa-file-pdf"></i> PDF
-          </a>
-          
-          
-          
-          
-        </div>
-      </div>
-
-      
-    
-      </div>
+    <!-- Footer -->
+    <div class="footer">
+      &copy; 2026 Zhangxuan Gu - All Rights Reserved
     </div>
-  </div>
-  
-  <!-- Footer -->
-  <div class="footer">
-    &copy; 2026 Zhangxuan Gu - All Rights Reserved
   </div>
 
   <!-- Font Awesome Icons -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <script>
+    // ===== Particle Animation =====
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        const style = getComputedStyle(document.documentElement);
+        const color = style.getPropertyValue('--particle-color').trim();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = color || 'rgba(6, 182, 212, 0.5)';
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+      particles = [];
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      const style = getComputedStyle(document.documentElement);
+      const lineColor = style.getPropertyValue('--particle-line').trim();
+      const maxDist = 120;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.beginPath();
+            ctx.strokeStyle = lineColor || 'rgba(6, 182, 212, 0.15)';
+            ctx.globalAlpha = 1 - dist / maxDist;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        }
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      connectParticles();
+      animationId = requestAnimationFrame(animateParticles);
+    }
+
+    initParticles();
+    animateParticles();
+
+    // ===== Theme Toggle =====
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+
+    const saved = localStorage.getItem('theme');
+    if (saved) {
+      html.setAttribute('data-theme', saved);
+    }
+    updateIcon();
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      updateIcon();
+    });
+
+    function updateIcon() {
+      const theme = html.getAttribute('data-theme');
+      icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // ===== Scroll Animations =====
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
