@@ -17,9 +17,9 @@ VENUE_DISPLAY = {
 
 CCF_A = {
     "CVPR", "ICCV", "NIPS", "NeurIPS", "AAAI", "ACMMM", "ICML",
-    "TMM", "SCIS",
+    "TMM", "SCIS", "Icassp", "ICASSP",
 }
-CCF_B = {"ECCV", "Icassp", "ICASSP", "TNNLS", "TCSVT"}
+CCF_B = {"ECCV", "TNNLS", "TCSVT"}
 
 
 def bold_authors(authors: str, name: str) -> str:
