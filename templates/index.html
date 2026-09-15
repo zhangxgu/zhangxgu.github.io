@@ -246,6 +246,7 @@
     .ccf-a { background: linear-gradient(135deg, #dc2626, #f87171); color: #fff; }
     .ccf-b { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
     .oral-tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.75em; font-weight: 700; font-style: normal; color: #fff; background: linear-gradient(135deg, #ef4444, #f97316); }
+    .new-tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.75em; font-weight: 700; font-style: normal; color: #09090b; background: linear-gradient(135deg, #22d3ee, #a3e635); }
     .pub-links { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; align-items: center; }
     .pub-btn {
       display: inline-flex; align-items: center; gap: 4px;
@@ -403,12 +404,15 @@
             <div class="pub-authors">{{ paper.authors_html|safe }}</div>
             <div class="pub-venue">
               <span class="pub-venue-text">{{ paper.venue_label }}</span>
+              {% if paper.new %}<span class="new-tag">NEW</span>{% endif %}
               {% if paper.ccf == 'A' %}<span class="ccf-tag ccf-a">CCF-A</span>{% elif paper.ccf == 'B' %}<span class="ccf-tag ccf-b">CCF-B</span>{% endif %}
               {% if paper.is_oral %}<span class="oral-tag">Oral</span>{% endif %}
             </div>
             <div class="pub-links">
               {% if paper.pdf %}<a href="{{ paper.pdf }}" class="pub-btn" target="_blank"><i class="fas fa-file-pdf"></i> Paper</a>{% endif %}
               {% if paper.code %}<a href="{{ paper.code }}" class="pub-btn" target="_blank"><i class="fab fa-github"></i> Code</a>{% endif %}
+              {% if paper.model %}<a href="{{ paper.model }}" class="pub-btn" target="_blank"><i class="fas fa-cube"></i> Model</a>{% endif %}
+              {% if paper.project %}<a href="{{ paper.project }}" class="pub-btn" target="_blank"><i class="fas fa-globe"></i> Project</a>{% endif %}
               {% if paper.slides %}<a href="{{ paper.slides }}" class="pub-btn" target="_blank"><i class="fas fa-file-powerpoint"></i> Slides</a>{% endif %}
               {% if paper.video %}<a href="{{ paper.video }}" class="pub-btn" target="_blank"><i class="fas fa-video"></i> Video</a>{% endif %}
             </div>

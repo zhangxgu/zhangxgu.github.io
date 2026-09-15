@@ -62,6 +62,7 @@ def enrich_paper(paper: dict) -> dict:
     p["venue_label"] = venue_label
     p["ccf"] = ccf
     p["is_oral"] = is_oral
+    p["new"] = bool(p.get("new"))
     return p
 
 

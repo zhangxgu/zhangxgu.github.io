@@ -1,4 +1,41 @@
 # papers.yml
+# Set `new: true` on newly added papers to show a NEW tag on the homepage.
+- title: "UI-Venus-2"
+  authors: "Venus Team"
+  year: 2026
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/html/2609.00028v1"
+  code: "https://github.com/inclusionAI/UI-Venus"
+  model: "https://huggingface.co/inclusionAI/UI-Venus-2-9B"
+  project: "https://ui-venus.github.io/UI-Venus-2"
+  new: true
+
+- title: "MAGA: Multi-Platform Self-Fusion of GUI Agents via Structured Action Distillation"
+  authors: "Hang Yan, Zhangxuan Gu, Beitong Zhou, Jiaxuan Chen, Runze Li, Yusong Hu, Shuheng Shen, Changhua Meng"
+  year: 2026
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/pdf/2607.29320"
+  new: true
+
+- title: "LLaDA-UI: Bringing Block-wise Diffusion to Vision-Language GUI Agents"
+  authors: "Zhangxuan Gu, Haoxing Chen, Qi Qin, Yi Xin, Kai Gan, Lin Liu, Long Cui, Xiaomei Wang, Beitong Zhou, Yunzhu Zhang, Zhengwen Zeng, Changlong Gao, Weizhi Chen, Rongchao Zhang, Haoyuan Wu, Shuheng Shen, Changhua Meng, Weiqiang Wang, Jianguo Li, Zhenzhong Lan"
+  year: 2026
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/abs/2609.13287"
+  code: "https://github.com/inclusionAI/LLaDA-UI"
+  model: "https://huggingface.co/inclusionAI/LLaDA-UI"
+  project: "https://www.inclusion-ai.org/LLaDA-UI/"
+  new: true
+
+- title: "LLaDA-Image: Building Strong Image Generators with Fully Open Training Recipes"
+  authors: "Chuyan Chen, Haoxing Chen, Kun Chen, Zhenglin Cheng, Long Cui, Ruishan Fang, Zhangxuan Gu, Zhicheng Huang, Zhenzhong Lan, Yuanting Lei, Haoquan Li, Jianguo Li, Rongchuan Li, Sidu Li, Tao Lin, Deyuan Liu, Jiacheng Liu, Lin Liu, Yuxuan Lou, Zhisheng Lu, Yuxin Ma, Shuheng Shen, Peng Sun, Chaoyang Wang, Hongjun Wang, Xiaomei Wang, Yongxin Wang, Chengzhang Wu, Hongru Wu, Jun Xie"
+  year: 2026
+  venue: "Arxiv"
+  pdf: "https://arxiv.org/pdf/2609.03796"
+  code: "https://github.com/inclusionAI/LLaDA-Image"
+  model: "https://huggingface.co/inclusionAI/LLaDA-Image"
+  new: true
+
 - title: "UI-Venus-1.5 Technical Report"
   authors: "Venus-Team: Changlong Gao*, Zhangxuan Gu*, Yulin Liu*, Xinyu Qiu*, Shuheng Shen*, Yue Wen*, Tianyu Xia*, Zhenyu Xu*, Zhengwen Zeng*, Beitong Zhou*, Xingran Zhou*, Weizhi Chen, Sunhao Dai, Jingya Dou, Yichen Gong, Yuan Guo, Zhenlin Guo, Feng Li, Qian Li, Jinzhen Lin, Yuqi Zhou, Linchao Zhu, Liang Chen, Zhenyu Guo, Changhua Meng, Weiqiang Wang"
   year: 2026
